@@ -23,25 +23,8 @@
 <br/>
 
 <!-- Navigation -->
-<table align="center" width="100%">
-  <tr>
-    <td align="center" width="20%">
-      <a href="#-关于">关于</a>
-    </td>
-    <td align="center" width="20%">
-      <a href="#-特性">特性</a>
-    </td>
-    <td align="center" width="20%">
-      <a href="#-技术栈">技术栈</a>
-    </td>
-    <td align="center" width="20%">
-      <a href="#-快速开始">快速开始</a>
-    </td>
-    <td align="center" width="20%">
-      <a href="#-路线图">路线图</a>
-    </td>
-  </tr>
-</table>
+
+**[关于](#-关于)** · **[特性](#-特性)** · **[技术栈](#-技术栈)** · **[快速开始](#-快速开始)** · **[路线图](#-路线图)**
 
 <br/>
 
