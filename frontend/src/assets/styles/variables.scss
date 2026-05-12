@@ -1,0 +1,134 @@
+// ── Color Palette ──────────────────────────────────────────
+$bg-primary: #0a0e1a;
+$bg-secondary: #141824;
+$bg-card: rgba(20, 24, 36, 0.7);
+$bg-card-hover: rgba(20, 24, 36, 0.85);
+
+$color-chocolate: #8B6914;
+$color-chocolate-light: #C49A6C;
+$color-chocolate-gradient: linear-gradient(135deg, #8B6914, #C49A6C);
+
+$color-snow: #E8EDF5;
+$color-accent: #7EB8DA;
+$color-warm-glow: #F5C77E;
+$color-folder-glow: #D4A853;
+
+$color-text-primary: #E8EDF5;
+$color-text-secondary: #8A94A8;
+$color-text-muted: #5A6478;
+
+// ── Borders & Radius ──────────────────────────────────────
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 24px;
+
+// ── Shadows ───────────────────────────────────────────────
+$shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.3);
+$shadow-glow-chocolate: 0 0 20px rgba(139, 105, 20, 0.3);
+$shadow-glow-accent: 0 0 20px rgba(126, 184, 218, 0.3);
+$shadow-card: 0 4px 24px rgba(0, 0, 0, 0.2);
+
+// ── Glass Effect ──────────────────────────────────────────
+$glass-bg: rgba(20, 24, 36, 0.6);
+$glass-border: 1px solid rgba(255, 255, 255, 0.08);
+$glass-blur: blur(20px);
+
+// ── Z-Index Scale ────────────────────────────────────────
+$z-background: 0;
+$z-content: 10;
+$z-sticky: 100;
+$z-float: 200;
+$z-overlay: 1000;
+$z-modal: 2000;
+
+// ── Layout ────────────────────────────────────────────────
+$topbar-height: 64px;
+$sidebar-width: 240px;
+
+// ── Transitions ───────────────────────────────────────────
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// ── File Card Dimensions ──────────────────────────────────
+$file-card-width: 180px;
+$file-card-height: 220px;
+$file-card-radius: 20px;
+
+// ── Extended Colors ───────────────────────────────────────
+$color-danger: #E85D75;
+$color-danger-glow: rgba(#E85D75, 0.4);
+$color-accent-glow: rgba($color-accent, 0.4);
+$color-blue-glow: rgba(100, 160, 220, 0.5);
+$color-gold-gradient: linear-gradient(135deg, #D4A853, #F5D799, #C49A6C);
+
+// ── Easing ────────────────────────────────────────────────
+$ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+$ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+
+// ── Action Bar ────────────────────────────────────────────
+$action-bar-height: 64px;
+$action-bar-radius: 20px;
+
+// ── CSS Custom Properties (for Element Plus overrides) ────
+:root {
+  --bg-primary: #{$bg-primary};
+  --bg-secondary: #{$bg-secondary};
+  --bg-card: #{$bg-card};
+  --bg-card-hover: #{$bg-card-hover};
+  --color-chocolate: #{$color-chocolate};
+  --color-chocolate-light: #{$color-chocolate-light};
+  --color-snow: #{$color-snow};
+  --color-accent: #{$color-accent};
+  --color-warm-glow: #{$color-warm-glow};
+  --color-text-primary: #{$color-text-primary};
+  --color-text-secondary: #{$color-text-secondary};
+  --color-text-muted: #{$color-text-muted};
+
+  // Element Plus theme overrides
+  --el-color-primary: #{$color-chocolate};
+  --el-color-primary-light-3: #A8803A;
+  --el-color-primary-light-5: #B8924E;
+  --el-color-primary-light-7: #C4A46C;
+  --el-color-primary-light-8: #D4B88A;
+  --el-color-primary-light-9: #E4CCA8;
+  --el-color-primary-dark-2: #6E5410;
+
+  --el-color-success: #7EB8DA;
+  --el-color-warning: #F5C77E;
+  --el-color-danger: #E85D75;
+  --el-color-info: #8A94A8;
+
+  --el-bg-color: #{$bg-primary};
+  --el-bg-color-overlay: #{$bg-secondary};
+  --el-bg-color-page: #{$bg-primary};
+
+  --el-text-color-primary: #{$color-text-primary};
+  --el-text-color-regular: #{$color-text-primary};
+  --el-text-color-secondary: #{$color-text-secondary};
+  --el-text-color-placeholder: #{$color-text-muted};
+
+  --el-border-color: rgba(255, 255, 255, 0.08);
+  --el-border-color-light: rgba(255, 255, 255, 0.05);
+  --el-border-color-lighter: rgba(255, 255, 255, 0.03);
+
+  --el-fill-color: rgba(255, 255, 255, 0.05);
+  --el-fill-color-light: rgba(255, 255, 255, 0.03);
+  --el-fill-color-lighter: rgba(255, 255, 255, 0.02);
+  --el-fill-color-blank: transparent;
+
+  --el-mask-color: rgba(10, 14, 26, 0.8);
+  --el-mask-color-extra-light: rgba(10, 14, 26, 0.3);
+
+  --el-font-family: 'Noto Sans SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --el-font-size-base: 14px;
+
+  --el-border-radius-base: 8px;
+  --el-border-radius-small: 6px;
+  --el-border-radius-round: 20px;
+
+  --el-box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  --el-box-shadow-light: 0 2px 12px rgba(0, 0, 0, 0.15);
+}

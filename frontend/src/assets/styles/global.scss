@@ -1,0 +1,369 @@
+@use './variables' as *;
+@use './animations';
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Noto Sans SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  background: var(--bg-primary);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-warm-glow;
+  }
+}
+
+// ── Scrollbar ─────────────────────────────────────────────
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+// ── Utility Classes ───────────────────────────────────────
+.glass-card {
+  background: $glass-bg;
+  backdrop-filter: $glass-blur;
+  -webkit-backdrop-filter: $glass-blur;
+  border: $glass-border;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card;
+}
+
+.glass-card-sm {
+  background: $glass-bg;
+  backdrop-filter: $glass-blur;
+  -webkit-backdrop-filter: $glass-blur;
+  border: $glass-border;
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+}
+
+.glow-hover {
+  transition: transform $transition-normal, box-shadow $transition-normal;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-glow-chocolate;
+  }
+}
+
+.glow-accent-hover {
+  transition: transform $transition-normal, box-shadow $transition-normal;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-glow-accent;
+  }
+}
+
+.text-gradient {
+  background: $color-chocolate-gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// ── Glass Circle Button ───────────────────────────────────
+.glass-circle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(20, 24, 36, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: scale(1.08);
+    color: #fff;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &.danger:hover {
+    background: rgba(#E85D75, 0.2);
+    box-shadow: 0 0 16px rgba(#E85D75, 0.3);
+    color: #E85D75;
+  }
+}
+
+// ── Glass Pill Button ─────────────────────────────────────
+.glass-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  background: rgba(20, 24, 36, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: $color-text-primary;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.97);
+  }
+}
+
+// ── Reduced Motion ────────────────────────────────────────
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// ── Element Plus Deep Overrides ───────────────────────────
+
+// Input fields
+.el-input__wrapper {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: none !important;
+  border-radius: $radius-sm !important;
+  padding: 4px 12px !important;
+  transition: border-color $transition-fast, box-shadow $transition-fast, background $transition-fast !important;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.18) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+  }
+
+  &.is-focus {
+    border-color: $color-chocolate !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    box-shadow: 0 0 0 2px rgba(139, 105, 20, 0.15) !important;
+  }
+}
+
+.el-input__inner {
+  color: $color-text-primary !important;
+  font-size: 14px !important;
+
+  &::placeholder {
+    color: $color-text-muted !important;
+  }
+}
+
+.el-input__prefix,
+.el-input__suffix {
+  color: $color-text-muted !important;
+  .el-icon {
+    color: $color-text-muted !important;
+  }
+}
+
+// Buttons
+.el-button {
+  border-radius: $radius-sm !important;
+  font-weight: 500 !important;
+  transition: transform $transition-fast, box-shadow $transition-fast, opacity $transition-fast !important;
+}
+
+.el-button--primary {
+  background: $color-chocolate-gradient !important;
+  border: none !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: $shadow-glow-chocolate !important;
+    background: $color-chocolate-gradient !important;
+    opacity: 0.9;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.el-button--danger {
+  &.is-plain {
+    background: rgba(#E85D75, 0.08) !important;
+    border: 1px solid rgba(#E85D75, 0.25) !important;
+    color: #E85D75 !important;
+
+    &:hover {
+      background: rgba(#E85D75, 0.15) !important;
+      border-color: rgba(#E85D75, 0.4) !important;
+    }
+  }
+}
+
+.el-button--primary.is-plain {
+  background: rgba($color-chocolate, 0.1) !important;
+  border: 1px solid rgba($color-chocolate, 0.25) !important;
+  color: $color-chocolate-light !important;
+
+  &:hover {
+    background: rgba($color-chocolate, 0.18) !important;
+    border-color: rgba($color-chocolate, 0.4) !important;
+  }
+}
+
+.el-button.is-text {
+  color: $color-text-secondary !important;
+
+  &:hover {
+    color: $color-text-primary !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+  }
+}
+
+// Card
+.el-card {
+  background: $glass-bg !important;
+  backdrop-filter: $glass-blur !important;
+  -webkit-backdrop-filter: $glass-blur !important;
+  border: $glass-border !important;
+  border-radius: $radius-lg !important;
+  box-shadow: $shadow-card !important;
+  color: $color-text-primary !important;
+}
+
+.el-card__header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+// Table
+.el-table {
+  background-color: transparent !important;
+  color: $color-text-primary !important;
+
+  &::before,
+  &::after {
+    display: none !important;
+  }
+
+  tr {
+    background-color: transparent !important;
+  }
+
+  .el-table__header-wrapper {
+    th {
+      background-color: rgba(255, 255, 255, 0.03) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+      color: $color-text-secondary !important;
+    }
+  }
+
+  .el-table__body-wrapper {
+    .el-table__row {
+      &:hover > td {
+        background-color: rgba(255, 255, 255, 0.03) !important;
+      }
+    }
+
+    td {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+    }
+  }
+
+  &--striped .el-table__body-wrapper .el-table__row--striped td {
+    background-color: rgba(255, 255, 255, 0.02) !important;
+  }
+}
+
+// Breadcrumb
+.el-breadcrumb__inner {
+  color: $color-text-secondary !important;
+}
+
+.el-breadcrumb__separator {
+  color: $color-text-muted !important;
+}
+
+// Loading
+.el-loading-mask {
+  background-color: rgba(10, 14, 26, 0.7) !important;
+}
+
+// Message
+.el-message {
+  background: $bg-secondary !important;
+  border: $glass-border !important;
+  border-radius: $radius-md !important;
+}
+
+// MessageBox
+.el-message-box {
+  background: $bg-secondary !important;
+  border: $glass-border !important;
+  border-radius: $radius-lg !important;
+
+  .el-message-box__title {
+    color: $color-text-primary !important;
+  }
+
+  .el-message-box__message {
+    color: $color-text-secondary !important;
+  }
+
+  .el-message-box__btns {
+    .el-button--primary {
+      background: $color-chocolate-gradient !important;
+      border: none !important;
+    }
+  }
+}

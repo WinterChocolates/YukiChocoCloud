@@ -1,0 +1,64 @@
+# ==================== Python ====================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+eggs/
+*.whl
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ==================== Virtual Environments ====================
+.venv/
+venv/
+env/
+ENV/
+.conda/
+
+# ==================== Node / Frontend ====================
+node_modules/
+frontend/dist/
+frontend/node_modules/
+.npm
+*.tgz
+
+# ==================== Environment & Secrets ====================
+.env
+.env.local
+.env.*.local
+
+# ==================== Uploads (user data) ====================
+backend/uploads/
+
+# ==================== IDE / Editor ====================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==================== Docker ====================
+*.log
+
+# ==================== OS ====================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ==================== Claude ====================
+.claude/
+
+# ==================== Project Temp ====================
+Plan/
+1.json
