@@ -9,6 +9,10 @@
 
 <script setup lang="ts">
 import SnowBackground from "@/components/SnowBackground.vue";
+import { useThemeStore } from "@/stores/theme";
+
+// 初始化主题
+useThemeStore();
 </script>
 
 <style lang="scss">
@@ -16,7 +20,8 @@ import SnowBackground from "@/components/SnowBackground.vue";
   position: relative;
   width: 100%;
   height: 100%;
-  background: linear-gradient(170deg, #0a0e1a 0%, #0d1225 40%, #101428 100%);
+  background: linear-gradient(170deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
   overflow: hidden;
+  transition: background 0.5s ease;
 }
 </style>

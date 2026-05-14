@@ -25,6 +25,15 @@
     </div>
 
     <div class="topbar-right">
+      <button
+        class="theme-btn"
+        @click="themeStore.toggleTheme()"
+        :title="themeStore.mode === 'winter' ? '切换到可可模式' : '切换到冬日模式'"
+        :aria-label="themeStore.mode === 'winter' ? '切换到可可模式' : '切换到冬日模式'"
+      >
+        <el-icon v-if="themeStore.mode === 'winter'"><Sunny /></el-icon>
+        <el-icon v-else><Moon /></el-icon>
+      </button>
       <div class="user-avatar">
         <span>{{ avatarLetter }}</span>
       </div>
@@ -37,7 +46,10 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { Search, SwitchButton } from "@element-plus/icons-vue";
+import { Search, SwitchButton, Sunny, Moon } from "@element-plus/icons-vue";
+import { useThemeStore } from "@/stores/theme";
+
+const themeStore = useThemeStore();
 
 const props = defineProps<{
   username: string;
@@ -153,6 +165,32 @@ const avatarLetter = computed(() =>
   font-weight: 700;
   color: white;
   cursor: default;
+}
+
+.theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: $radius-sm;
+  color: $color-text-secondary;
+  cursor: pointer;
+  transition: color $transition-fast, border-color $transition-fast, background $transition-fast, transform $transition-fast;
+
+  &:hover {
+    color: $color-warm-glow;
+    border-color: rgba($color-warm-glow, 0.3);
+    background: rgba($color-warm-glow, 0.08);
+    transform: rotate(15deg);
+  }
+
+  .el-icon {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+  }
 }
 
 .logout-btn {
