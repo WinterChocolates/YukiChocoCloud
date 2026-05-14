@@ -7,7 +7,7 @@
 </p>
 
 <p>
-  <a href="#"><img src="https://img.shields.io/badge/Version-0.2-blueviolet?style=for-the-badge&logo=ghost&logoColor=white" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/Version-0.3-blueviolet?style=for-the-badge&logo=ghost&logoColor=white" /></a>
   <a href="#"><img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white" /></a>
   <a href="#"><img src="https://img.shields.io/badge/Vue-3-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white" /></a>
   <a href="#"><img src="https://img.shields.io/badge/PostgreSQL-16-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" /></a>
@@ -69,19 +69,20 @@
       <p>分享链接支持密码与有效期，只给想给的人看</p>
     </td>
     <td align="center">
-      <h3>🗑 回收站</h3>
-      <p>软删除机制，删除不等于消失，记忆可以反悔</p>
+      <h3>👥 用户注册</h3>
+      <p>独立注册页面，用户名 3-64 字符，密码 6-128 字符</p>
     </td>
     <td align="center">
-      <h3>👥 多用户</h3>
-      <p>每个家人都有自己的小天地，空间配额可调</p>
+      <h3>🗑 回收站</h3>
+      <p>软删除机制，删除不等于消失，记忆可以反悔</p>
+      <sub>🔨 计划中</sub>
     </td>
   </tr>
   <tr>
     <td align="center">
       <h3>🎨 主题切换</h3>
       <p>冬日模式 (银白与淡蓝) / 可可模式 (暖棕与奶白)</p>
-      <sub>🔨 即将到来</sub>
+      <sub>✨ 已完成</sub>
     </td>
     <td align="center">
       <h3>🎀 看板娘</h3>
@@ -244,8 +245,9 @@ http://localhost:8000/docs
 |:---:|:---:|:---:|:---|
 | v0.1 | 初雪 | ✅ | 基础文件管理：浏览、上传、下载、删除 |
 | v0.2 | 可可雨 | ✅ | 分享系统：加密链接、密码与有效期 |
-| v0.3 | 积雪 | 🔨 | 回收站 / 操作日志 / 文件搜索 |
-| v1.0 | 融雪 | 🎯 | 主题切换、移动端适配、稳定版本 |
+| v0.3 | 积雪 | ✅ | 用户注册、主题切换（冬日/可可模式） |
+| v0.4 | 霜降 | 🔨 | 回收站 / 操作日志 / 文件搜索 |
+| v1.0 | 融雪 | 🎯 | 移动端适配、看板娘、稳定版本 |
 
 ---
 
