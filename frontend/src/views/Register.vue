@@ -1,12 +1,12 @@
 <template>
-  <div class="login-page">
-    <div class="login-card glass-card" :class="{ visible: mounted }">
+  <div class="register-page">
+    <div class="register-card glass-card" :class="{ visible: mounted }">
       <div class="card-header">
         <div class="logo-row">
           <svg class="logo-svg" width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 2v20M2 12h20M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4" stroke="url(#login-logo-grad)" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="12" cy="12" r="3" fill="url(#login-logo-grad)" opacity="0.8"/>
-            <defs><linearGradient id="login-logo-grad" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#C49A6C"/><stop offset="1" stop-color="#8B6914"/></linearGradient></defs>
+            <path d="M12 2v20M2 12h20M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4" stroke="url(#register-logo-grad)" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="3" fill="url(#register-logo-grad)" opacity="0.8"/>
+            <defs><linearGradient id="register-logo-grad" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#C49A6C"/><stop offset="1" stop-color="#8B6914"/></linearGradient></defs>
           </svg>
         </div>
         <h1 class="logo-title">YukiChocoCloud</h1>
@@ -18,15 +18,15 @@
         :model="form"
         :rules="rules"
         label-width="0"
-        @submit.prevent="handleLogin"
-        class="login-form"
+        @submit.prevent="handleRegister"
+        class="register-form"
       >
         <el-form-item prop="username">
-          <label for="login-username" class="sr-only">用户名</label>
+          <label for="register-username" class="sr-only">用户名</label>
           <el-input
-            id="login-username"
+            id="register-username"
             v-model="form.username"
-            placeholder="用户名"
+            placeholder="用户名（3-64 字符）"
             size="large"
           >
             <template #prefix>
@@ -36,15 +36,31 @@
         </el-form-item>
 
         <el-form-item prop="password">
-          <label for="login-password" class="sr-only">密码</label>
+          <label for="register-password" class="sr-only">密码</label>
           <el-input
-            id="login-password"
+            id="register-password"
             v-model="form.password"
             type="password"
-            placeholder="密码"
+            placeholder="密码（6-128 字符）"
             size="large"
             show-password
-            @keyup.enter="handleLogin"
+          >
+            <template #prefix>
+              <el-icon><Lock /></el-icon>
+            </template>
+          </el-input>
+        </el-form-item>
+
+        <el-form-item prop="confirmPassword">
+          <label for="register-confirm" class="sr-only">确认密码</label>
+          <el-input
+            id="register-confirm"
+            v-model="form.confirmPassword"
+            type="password"
+            placeholder="确认密码"
+            size="large"
+            show-password
+            @keyup.enter="handleRegister"
           >
             <template #prefix>
               <el-icon><Lock /></el-icon>
@@ -57,17 +73,17 @@
             type="primary"
             size="large"
             :loading="loading"
-            class="login-btn"
-            @click="handleLogin"
+            class="register-btn"
+            @click="handleRegister"
           >
-            登 录
+            注 册
           </el-button>
         </el-form-item>
       </el-form>
 
       <div class="card-footer">
-        <span class="footer-text">还没有账号？</span>
-        <router-link to="/register" class="register-link">立即注册</router-link>
+        <span class="footer-text">已有账号？</span>
+        <router-link to="/login" class="login-link">返回登录</router-link>
       </div>
     </div>
   </div>
@@ -86,22 +102,44 @@ const formRef = ref<FormInstance>();
 const loading = ref(false);
 const mounted = ref(false);
 
-const form = reactive({ username: "", password: "" });
+const form = reactive({
+  username: "",
+  password: "",
+  confirmPassword: "",
+});
 
-const rules: FormRules = {
-  username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
-  password: [{ required: true, message: "请输入密码", trigger: "blur" }],
+const validateConfirmPassword = (rule: any, value: string, callback: any) => {
+  if (value !== form.password) {
+    callback(new Error("两次输入的密码不一致"));
+  } else {
+    callback();
+  }
 };
 
-async function handleLogin() {
+const rules: FormRules = {
+  username: [
+    { required: true, message: "请输入用户名", trigger: "blur" },
+    { min: 3, max: 64, message: "用户名长度为 3-64 字符", trigger: "blur" },
+  ],
+  password: [
+    { required: true, message: "请输入密码", trigger: "blur" },
+    { min: 6, max: 128, message: "密码长度为 6-128 字符", trigger: "blur" },
+  ],
+  confirmPassword: [
+    { required: true, message: "请确认密码", trigger: "blur" },
+    { validator: validateConfirmPassword, trigger: "blur" },
+  ],
+};
+
+async function handleRegister() {
   const valid = await formRef.value?.validate().catch(() => false);
   if (!valid) return;
 
   loading.value = true;
-  const success = await userStore.login(form.username, form.password);
+  const success = await userStore.register(form.username, form.password);
   if (success) {
-    ElMessage.success("登录成功");
-    router.push("/");
+    ElMessage.success("注册成功，请登录");
+    router.push("/login");
   }
   loading.value = false;
 }
@@ -128,7 +166,7 @@ onMounted(() => {
   border-width: 0;
 }
 
-.login-page {
+.register-page {
   position: relative;
   z-index: 1;
   display: flex;
@@ -139,7 +177,7 @@ onMounted(() => {
   background: radial-gradient(ellipse at 50% 30%, rgba($color-accent, 0.06) 0%, transparent 60%);
 }
 
-.login-card {
+.register-card {
   width: 400px;
   padding: 40px 36px 36px;
   opacity: 0;
@@ -183,7 +221,7 @@ onMounted(() => {
   letter-spacing: 0.5px;
 }
 
-.login-form {
+.register-form {
   :deep(.el-form-item) {
     margin-bottom: 22px;
   }
@@ -197,7 +235,7 @@ onMounted(() => {
   }
 }
 
-.login-btn {
+.register-btn {
   width: 100%;
   height: 42px;
   font-size: 15px;
@@ -212,7 +250,7 @@ onMounted(() => {
   color: $color-text-muted;
 }
 
-.register-link {
+.login-link {
   color: $color-accent;
   font-weight: 500;
 

@@ -9,6 +9,24 @@ export const useUserStore = defineStore("user", () => {
 
   const isLoggedIn = computed(() => !!token.value);
 
+  async function register(
+    user: string,
+    password: string
+  ): Promise<boolean> {
+    try {
+      const { data: res } = await authApi.register(user, password);
+      if (res.code === 0) {
+        return true;
+      } else {
+        ElMessage.error(res.message);
+        return false;
+      }
+    } catch (err: any) {
+      ElMessage.error(err.response?.data?.detail || "注册失败");
+      return false;
+    }
+  }
+
   async function login(
     user: string,
     password: string
@@ -42,6 +60,7 @@ export const useUserStore = defineStore("user", () => {
     token,
     username,
     isLoggedIn,
+    register,
     login,
     logout,
   };

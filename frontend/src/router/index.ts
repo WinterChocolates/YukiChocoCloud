@@ -10,6 +10,12 @@ const router = createRouter({
       meta: { transition: "fade" },
     },
     {
+      path: "/register",
+      name: "Register",
+      component: () => import("../views/Register.vue"),
+      meta: { transition: "fade" },
+    },
+    {
       path: "/",
       name: "Home",
       component: () => import("../views/Home.vue"),
@@ -28,7 +34,7 @@ router.beforeEach((to) => {
   if (to.meta.requiresAuth && !token) {
     return { name: "Login" };
   }
-  if (to.name === "Login" && token) {
+  if ((to.name === "Login" || to.name === "Register") && token) {
     return { name: "Home" };
   }
 });
